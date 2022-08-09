@@ -1,0 +1,6 @@
+import UserMapper from 'example/src/mappers/user/UserMapper.js'
+import PurchaseMapper from 'example/src/mappers/purchase/PurchaseMapper.js'
+import IncomeMapper from 'example/src/mappers/income/IncomeMapper.js'
+import PurchaseRepository from 'example/src/repositories/puchase/PurchaseRepository.js'
+import UserRepository from 'example/src/repositories/user/UserRepository.js'
+import IncomeRepository from 'example/src/repositories/income/IncomeRepository.js'

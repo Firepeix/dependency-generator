@@ -26,15 +26,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'js_dependency_generator'",
+            "name": "Debug executable 'dependency_generator'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=js_dependency_generator",
-                    "--package=js_dependency_generator"
+                    "--bin=dependency_generator",
+                    "--package=dependency_generator"
                 ],
                 "filter": {
-                    "name": "js_dependency_generator",
+                    "name": "dependency_generator",
                     "kind": "bin"
                 }
             },
