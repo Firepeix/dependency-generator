@@ -8,7 +8,7 @@ use super::{Instanceable, InnerDependency};
 pub struct Dependency {
     pub fqdn: String,
     pub name: String,
-    varname: String,
+    pub varname: String,
     dependencies: Vec<InnerDependency>,
     pub loaded: bool
 }
@@ -16,9 +16,10 @@ pub struct Dependency {
 impl Dependency {
    fn new(base: &str) -> Self {
     let name = base.split('/').last().unwrap_or("").replace(".js", "");
+    let (first_letter, word) = name.split_at(1);
     Dependency { 
         fqdn: base.to_string(), 
-        varname: name.clone().to_lowercase(), 
+        varname: format!("{}{}", first_letter.to_lowercase(), word), 
         name, 
         dependencies: vec![],
         loaded: false

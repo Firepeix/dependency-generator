@@ -14,7 +14,7 @@ pub struct InnerDependency {
 
 impl InnerDependency {
     pub fn new(name: &str, varname: String) -> Self {
-        InnerDependency { name: name.to_string(), varname: varname.to_string() }
+        InnerDependency { name: name.to_string(), varname }
     }
 }
 

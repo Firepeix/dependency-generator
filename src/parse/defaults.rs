@@ -25,8 +25,8 @@ impl DefaultDependency {
         let contents = fs::read_to_string(path)?;
         contents.lines()
         .filter_map(|line| {
-            if line != "" {
-                let fields = line.split(",").collect::<Vec<&str>>();
+            if !line.is_empty() {
+                let fields = line.split(',').collect::<Vec<&str>>();
                 if fields.len() > 2 && fields.len() < 5 {
                     let declaration = if fields.len() == 3 { None } else {Some(fields[3])};
                     return Some(Ok(DefaultDependency::new(fields[0], fields[1], fields[2], declaration)))
@@ -56,6 +56,6 @@ impl Instanceable for DefaultDependency {
     }
 
     fn id(&self,) -> String {
-        return self.varname.clone()
+        self.varname.clone()
     }
 }

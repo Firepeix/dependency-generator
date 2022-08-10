@@ -11,13 +11,25 @@ import IncomeService from 'example/src/services/income/IncomeService.js'
 import { ebisuClient } from 'boot/axios'
 
 
-const usermapper = new UserMapper()
-const purchasemapper = new PurchaseMapper()
-const incomemapper = new IncomeMapper()
-const expenseservice = new ExpenseService()
-const purchaserepository = new PurchaseRepository(purchasemapper,ebisuClient)
-const userrepository = new UserRepository(usermapper,ebisuClient)
-const incomerepository = new IncomeRepository(incomemapper,ebisuClient)
-const userservice = new UserService(userrepository)
-const purchaseservice = new PurchaseService(purchaserepository)
-const incomeservice = new IncomeService(incomerepository)
+const userMapper = new UserMapper()
+const purchaseMapper = new PurchaseMapper()
+const incomeMapper = new IncomeMapper()
+const expenseService = new ExpenseService()
+const purchaseRepository = new PurchaseRepository(purchaseMapper,ebisuClient)
+const userRepository = new UserRepository(userMapper,ebisuClient)
+const incomeRepository = new IncomeRepository(incomeMapper,ebisuClient)
+const userService = new UserService(userRepository)
+const purchaseService = new PurchaseService(purchaseRepository)
+const incomeService = new IncomeService(incomeRepository)
+
+export { userMapper,
+purchaseMapper,
+incomeMapper,
+purchaseRepository,
+userRepository,
+incomeRepository,
+userService,
+expenseService,
+purchaseService,
+incomeService 
+}

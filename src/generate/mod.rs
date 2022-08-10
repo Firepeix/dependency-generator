@@ -1,10 +1,13 @@
 
+use std::fmt::format;
+
 use crate::{Dependency, parse::{defaults::DefaultDependency, Instanceable, Dependencies}};
 
 pub fn generate(depedencies: &[Dependency], defaults: &[DefaultDependency]) -> String {
     let mut lines = vec![];
     lines.append(&mut imports(depedencies, defaults));
     lines.append(&mut instantiate(depedencies, defaults));
+    lines.push(export(depedencies, defaults));
     lines.join("\n")
 }
 
@@ -58,4 +61,16 @@ fn instantiate_dependencyfull(depedencies: &[Dependency], instantiated: &mut Vec
 
         instantiate_dependencyfull(depedencies, instantiated, runs + 1)
     }
+ }
+
+ fn export(depedencies: &[Dependency], defaults: &[DefaultDependency]) -> String {
+    let exports = depedencies.iter().map(|d| d.varname.clone()).collect::<Vec<String>>().join(",\n");
+    let export_defaults = defaults.iter().filter_map(|d| {
+        if d.declaration.is_some() {
+            return Some(d.varname.clone())
+        }
+        None
+    }).collect::<Vec<String>>().join(",\n");
+
+    format!("export {{ {}{} \n}}", exports, export_defaults)
  }
