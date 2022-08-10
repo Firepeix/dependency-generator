@@ -1,6 +1,6 @@
 use std::{path::{PathBuf}, error::Error};
 
-use parse::{dependency::Dependency, parse};
+use parse::{dependency::Dependency, parse, parse_default, defaults::DefaultDependency};
 
 mod parse;
 mod generate;
@@ -10,8 +10,12 @@ pub fn get_dependencies(paths: &[PathBuf]) -> Result<Vec<Dependency>, Box<dyn Er
   parse(&files)
 }
 
-pub fn generate(depedencies: &[Dependency]) -> String {
-  generate::generate(depedencies)
+pub fn get_default_dependencies(path: &PathBuf) -> Result<Option<Vec<DefaultDependency>>, Box<dyn Error>> {
+  parse_default(path)
+}
+
+pub fn generate(depedencies: &[Dependency], defaults: &[DefaultDependency]) -> String {
+  generate::generate(depedencies, defaults)
 }
 
 fn find_files(paths: &[PathBuf]) -> Result<Vec<PathBuf>, Box<dyn Error>> {
