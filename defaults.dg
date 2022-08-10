@@ -1,1 +1,0 @@
-import { ebisuClient } from 'boot/axios',AxiosInstance,ebisuClient
