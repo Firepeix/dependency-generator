@@ -1,6 +1,4 @@
 
-use std::fmt::format;
-
 use crate::{Dependency, parse::{defaults::DefaultDependency, Instanceable, Dependencies}};
 
 pub fn generate(depedencies: &[Dependency], defaults: &[DefaultDependency]) -> String {
